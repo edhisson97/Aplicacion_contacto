@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<section class ="d-flex justify-content-center">
+    <div class="card col-sm-7 p-3" >
+        <div class="mb-3" style ="text-align: center">
+            <h3>Notas del sistema </h3>
+        </div>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+        method="GET">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small"  placeholder="Buscar ej. 'Apuntes', 'Realizar tarea', 'Estudiar para el martes'" name="buscar" value="">
+            <div>
+              <h6>&nbsp;&nbsp;&nbsp;</h6>
+            </div>
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="submit">Buscar</button>
+            </div>
+            <div>
+              <h6>&nbsp;&nbsp;&nbsp;</h6>
+            </div>
+            <div class="input-group-append">
+              <a class="btn btn-primary" href="/vernotas">Ver todo</a>
+            </div>
+          </div>
+        </form>
+        <!--
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <h6>Selecciona un contacto &nbsp;&nbsp;</h6>
+            </li>
+            <li class="nav-item">
+              <select  id="email" class="form-select "  style="width:300px " name="email">
+                {% for contactos in contactos %}
+                <option value="{{contactos.email}}">{{ contactos.nombre }} - {{ contactos.email }} </option>
+                {% endfor %}
+              </select>
+            </li>
+            <li>
+              <h1>&nbsp;&nbsp;&nbsp;</h1>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary btn-light" href="/buscarNota/{{email.email}}">Buscar</a>
+            </li>
+          </ul>     -->
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Notas</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Perteneciente a </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for apuntes in apuntes %}
+            <tr>
+                <th scope="row">{{ apuntes.nombre }}</th>
+                <td>{{ apuntes.contenido }}</td>
+                <td>{{ apuntes.email }}</td>
+                <td><a class="btn btn-sm btn-warning" href="/edicionNota/{{apuntes.id}}">Editar</a></td>
+                <td><a class="btn btn-sm btn-danger" href="/eliminarNota/{{apuntes.id}}">Eliminar</a></td>
+              </tr>
+            {% endfor %}  
+            </tbody>
+        </table>
+    </div>
+</section>   
+{% endblock %} 

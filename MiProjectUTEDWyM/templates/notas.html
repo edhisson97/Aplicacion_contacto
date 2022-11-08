@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+        <div class="mb-3" style ="text-align: center">
+            <h3>Agregar nuevas notas </h3>
+        </div>
+        <form method="GET" action="/notas" class="form">
+            <select  name="cedula">
+                {% for contacto in contactos %}
+                <option>{{ contacto.cedula }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" id="" name="nombre" placeholder="Nombre de la nota" style="width : 270px; heigth : 10px" maxlength="30"/>
+            <div class="mb-3">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="descripcion" placeholder="Descripcion de la nota " style="width : 500px; heigth : 10px" maxlength="100"/>
+            </div>
+            <input type="submit" value="Guardar">
+        </form>    
+    </div>
+</div>
+{% endblock %}
